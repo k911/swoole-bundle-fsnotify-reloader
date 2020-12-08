@@ -182,9 +182,9 @@ func visitRelevantDirectoriesOnly(dirs *[]string, verbose bool) filepath.WalkFun
 			return nil
 		}
 
-		// skips var directory
+		// skips var and vendor directories
 		// skips "hidden" directories
-		if info.Name() == "var" || strings.HasPrefix(info.Name(), ".") {
+		if info.Name() == "var" || info.Name() == "vendor" || strings.HasPrefix(info.Name(), ".") {
 			if verbose {
 				fmt.Println("[Info] Skipped dir:", path)
 			}
