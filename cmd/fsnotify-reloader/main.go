@@ -163,7 +163,10 @@ func runWatcherWorker(watcher *fsnotify.Watcher, verbose bool, reload chan<- boo
 			}
 			if event.Op&fsnotify.Write == fsnotify.Write {
 				log.Println("[Info] modified file:", event.Name)
-				if strings.HasSuffix(event.Name, ".php") {
+				if strings.HasSuffix(event.Name, ".php") ||
+					strings.HasSuffix(event.Name, ".twig") ||
+					strings.HasSuffix(event.Name, ".yaml") ||
+					strings.HasSuffix(event.Name, ".yml") {
 					reload <- true
 				}
 			}
